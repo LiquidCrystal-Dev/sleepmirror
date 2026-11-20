@@ -1,0 +1,132 @@
+ body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin: 0;
+    }
+    .container {
+        padding-top: 50px;
+        background-color: #1e1e1e;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        text-align: center;
+        width: 300px;
+        
+    }
+
+    .quiz {
+        background-color: #1e1e1e;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        text-align: center;
+        width: 800px;
+        height: 2000px;
+    }
+
+    .question {
+        background-color: #2d2c2c;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        text-align: center;
+        width: 700px;
+        height: 250px;
+    }
+
+    h2 {
+        
+        font-size: 24px;
+        color: #e0e0e0;
+    }
+    h4 {
+        margin-top: 10px;
+        font-size: 20px;
+        color: #e0e0e0;
+    }
+    select {
+        width: 100%;
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 6px;
+        border: 1px solid #444;
+        background-color: #2c2c2c;
+        color: #ffffff;
+        font-size: 16px;
+        outline: none;
+    }
+    select:focus {
+        border-color: #6200ea;
+    }
+    .buttonLink {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        border: none;
+        background-color: #6200ea;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+    button:hover {
+        background-color: #7c4dff;
+    }
+    #result {
+        display: none;
+        padding: 15px;
+        background-color: #2c2c2c;
+        border-left: 5px solid #6200ea;
+        border-radius: 6px;
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    legend {
+         
+        padding: 20px;
+
+        margin-bottom: 20px;
+        border-radius: 6px;
+        border: none;
+        background-color: #6200ea;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .questionField {
+        border: 5px solid #ffffff;
+        border-radius: 20px;
+        padding-bottom: 60px;
+    }
+
+    .option {
+        font-size: 15px;
+        color: #e0e0e0;
+        font-weight: bold;
+        accent-color: #6200ea;
+        display: inline-block;
+        padding: 10px;
+        border: 2px solid #444;
+        border-radius: 5px;
+    }
+
+    label:has(input:checked) {
+        border: 2px solid #6200ea;
+    }
+
+    .h6 {
+        font-size: 2px;
+        font-size: xx-small;
+    }

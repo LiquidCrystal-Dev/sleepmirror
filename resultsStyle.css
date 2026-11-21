@@ -77,6 +77,7 @@ body {
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        max-width: 100px;
     }
 
     .linkbutton {
@@ -95,7 +96,7 @@ body {
     }
 
     button:hover {
-        background-color: #7c4dff;
+        background-color: #ac8dff;
     }
     #result {
         display: none;
@@ -106,4 +107,27 @@ body {
         font-size: 16px;
         line-height: 1.5;
         text-align: left;
+    }
+
+    th {
+        padding: 10px;
+        background-color: #2c2c2c;
+        border-left: 5px solid #6200ea;
+        border-radius: 6px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    tbody {
+        padding: 20px;
+        line-height: 2;
+        background-color: #2c2c2c;
+    }
+
+    .header {
+    position: fixed;   /* Stays at the top when scrolling (use 'absolute' to scroll with the page) */
+    top: 20px;
+    right: 40px;       /* Switch to 'left: 20px;' if you prefer the top-left corner */
+    width: 200px;       /* Overrides the 100% width on buttons */
+    padding: 20px 20px;
     }

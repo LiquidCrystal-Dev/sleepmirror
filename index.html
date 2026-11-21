@@ -3,14 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="media/images/logo.svg">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="landingJS.js" defer></script>
 <link rel="stylesheet" href="landingStyle.css">
-<title>The Sleep Reflection App</title>
+
+<title>Sleep Mirror - Start</title>
 
 </head>
 <body>
 
+<h3 id="welcomeMessage"></h3>
+<div id="authLinks">
+    <a href="login.html" class="linkbutton">Log In</a>
+    <a href="signup.html" class="linkbutton">Sign Up</a>
+</div>
+<button id="logoutButton" onclick="handleLogout()" style="display: none;">Log Out</button>
 
+
+
+<br>
+<br>
     
 <div class="container" id="splash"> 
     

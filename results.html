@@ -3,15 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="media/images/logo.svg">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="resultsJS.js" defer></script>
 <link rel="stylesheet" href="resultsStyle.css">
-<title>Results - The Sleep Reflection App</title>
+<title>Sleep Mirror - Results</title>
+
+<h3 id="welcomeMessage"></h3>
+<div id="authLinks">
+    <a href="login.html" class="linkbutton">Log In</a>
+    <a href="signup.html" class="linkbutton">Sign Up</a>
+</div>
+<button class="header" id="logoutButton" onclick="handleLogout()" style="display: none;">Log Out</button>
+
 </head>
 <body>
 
 
-<h2>Results!</h2>  
+
+
+<h2>Today's Results</h2>  
 <h4>Your Distraction Rating:</h4>
 <div class="container" id="distractionsDiv"></div> 
 <br>
@@ -28,8 +39,28 @@
 <div class="container" id="sleepDeficiencyDiv"></div>
     
     
+<br>
 
+<h2>Past Results</h2>
 
+<table id="userResultsTable" style="display: none; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Hours</th>
+            <th>Distractions</th>
+            <th>Mental Health</th>
+            <th>Sleep Quality</th>
+            <th>Sleep Deficiency</th>
+        </tr>
+    </thead>
+    <tbody id="resultsTableBody"></tbody>
+</table>
 
+<br>
+
+<p>Awaitng graph for visuals.</p>
+
+<br>
 </body>
 </html>

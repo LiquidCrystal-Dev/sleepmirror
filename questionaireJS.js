@@ -36,4 +36,5 @@ function saveWeights() {
 };
 
 localStorage.setItem("weights", JSON.stringify(weights));
+localStorage.setItem("alreadySent", "false");
 }

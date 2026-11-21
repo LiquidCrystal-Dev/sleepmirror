@@ -3,13 +3,16 @@
     "sb_publishable_lPeE6Kk2OsNJcojj73mG8w_lYsyUAIX")
  
   
- 
+    localStorage.setItem("alreadySent", "false");
+
     const weights = JSON.parse(localStorage.getItem("weights"));
     const distractionDiv = document.getElementById("distractionsDiv");
     const mentalHealthDiv= document.getElementById("mentalHealthDiv");
     const sleepQualityDiv = document.getElementById("sleepQualityDiv");
     const sleepDeficiencyDiv = document.getElementById("sleepDeficiencyDiv");
     const hours = Number(localStorage.getItem("hours"));
+
+    alreadySent = JSON.parse(localStorage.getItem("alreadySent"));
 
 if (weights) {
 
@@ -39,9 +42,12 @@ if (weights) {
         } else {
             console.log("Results saved to Supabase!");
         }
+        localStorage.setItem("alreadySent", "true");
     }
-
-    saveToSupabase();
+    if (alreadySent == false) {
+        saveToSupabase();
+    }
+    
 } 
 
     

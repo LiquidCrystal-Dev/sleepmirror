@@ -6,6 +6,10 @@ async function displayAnalysis(distractions, mentalHealth, sleepQuality, sleepDe
     const analysisDiv2 = document.getElementById("analysisDiv2");
     const analysisDiv3 = document.getElementById("analysisDiv3");
 
+     if (sleepDeficiency < -2) {
+        analysisDiv.textContent = analysis.lowSleepDeficiency[0];
+    }
+
     if (distractions < 0) {
         analysisDiv1.textContent = analysis.lowDistraction[0];
         analysisDiv2.textContent = analysis.lowDistraction[1];
@@ -20,9 +24,7 @@ async function displayAnalysis(distractions, mentalHealth, sleepQuality, sleepDe
         analysisDiv.textContent = analysis.lowSleepQuality[0];
     }
 
-    if (sleepDeficiency < 0) {
-        analysisDiv.textContent = analysis.lowSleepDeficiency[0];
-    }
+   
 }
 
 

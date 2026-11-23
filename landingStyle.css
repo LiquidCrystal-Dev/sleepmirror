@@ -1,14 +1,33 @@
 body {
-        background-color: #121212;
+        background-image: url("background.jpg");
+        background-size: cover;   
+        background-repeat: no-repeat; 
+        background-position: center;  
+        background-attachment: fixed;
         color: #ffffff;
         font-family: Arial, sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 100vh;
+        justify-content: flex-start;
+        height: 1000vh;
         margin: 0;
-    }
+}
+       
+        
+
+    
+body::before {
+    content: "";
+    position: fixed;
+    inset: -10px; /* Slightly larger than container to hide soft edges */
+    background-image: url("background.jpg");
+    background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  z-index: -1; 
+}
+    
     .container {
         padding-top: 50px;
         background-color: #1e1e1e;
@@ -91,6 +110,55 @@ body {
         cursor: pointer;
         transition: background-color 0.3s ease;
         text-decoration: none;
+    }
+
+    .headerbutton1 {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 10%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        border: none;
+        background-color: #6200ea;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        background-color: #393939;
+        
+    }
+
+    .headerbutton2 {
+        position: fixed;
+        top: 20px;
+        right: 200px;
+        width: 10%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        border: none;
+        background-color: #6200ea;
+        
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        
+    }
+
+    .header {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        background-color: #181818;
+        margin-bottom: 20px;
+        height: 90px;
     }
 
     button:hover {

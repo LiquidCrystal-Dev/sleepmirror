@@ -7,7 +7,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        min-height: 100vh;
+        min-height: 1000vh;
         margin: 0;
     }
     .container {
@@ -29,6 +29,56 @@ body {
         text-align: center;
         width: 800px;
         height: 2000px;
+    }
+
+    .headerbutton1 {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 10%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        border: none;
+        background-color: #6200ea;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        background-color: #393939;
+        
+    }
+
+    .headerbutton2 {
+        position: fixed;
+        top: 20px;
+        right: 200px;
+        width: 10%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        border: none;
+        background-color: #6200ea;
+        
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        
+    }
+
+
+    .header {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        background-color: #181818;
+        margin-bottom: 20px;
+        height: 90px;
     }
 
     .question {

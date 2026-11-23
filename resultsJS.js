@@ -2,6 +2,7 @@
 async function displayAnalysis(distractions, mentalHealth, sleepQuality, sleepDeficiency) {
     const response = await fetch("analysis.json");
     const analysis = await response.json();
+    const analysisDiv = document.getElementById("analysisDiv");
     const analysisDiv1 = document.getElementById("analysisDiv1");
     const analysisDiv2 = document.getElementById("analysisDiv2");
     const analysisDiv3 = document.getElementById("analysisDiv3");
@@ -24,10 +25,55 @@ async function displayAnalysis(distractions, mentalHealth, sleepQuality, sleepDe
         analysisDiv.textContent = analysis.lowSleepQuality[0];
     }
 
-   
+   getAIAnalysis(hours, distractions, mentalHealth, sleepQuality, sleepDeficiency);
 }
 
+function formatAIResponse(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\n/g, "<br>");
+}
 
+async function getAIAnalysis(hours, distractions, mentalHealth, sleepQuality, sleepDeficiency) {
+    const analysisDiv = document.getElementById("analysisDiv");
+    analysisDiv.textContent = "Generating personalized AI sleep analysis...";
+
+    const { data, error } = await supabaseClient.functions.invoke("sleep-advice", {
+        body: {
+            hours: hours,
+            distractions: distractions,
+            mentalHealth: mentalHealth,
+            sleepQuality: sleepQuality,
+            sleepDeficiency: sleepDeficiency
+        }
+    });
+
+    if (error || data?.error) {
+        console.error("AI error, using backup tips:", error || data.error);
+        try {
+            const response = await fetch("analysis.json");
+            const analysis = await response.json();
+            const pick = (item) => Array.isArray(item) ? item[0] : item;
+            const tips = [];
+
+            if (distractions < 0) tips.push(pick(analysis.lowDistraction));
+            if (mentalHealth < 0) tips.push(pick(analysis.lowMentalHealth));
+            if (sleepQuality < 0) tips.push(pick(analysis.lowSleepQuality));
+            if (sleepDeficiency < 0) tips.push(pick(analysis.lowSleepDeficiency));
+
+            analysisDiv.textContent = tips.length > 0
+                ? tips.join("\n\n")
+                : "Your sleep habits look solid across all categories!";
+        } catch (fallbackErr) {
+            analysisDiv.textContent = "Could not load sleep analysis right now.";
+        }
+    } else {
+        analysisDiv.innerHTML = formatAIResponse(data.reply);
+    }
+}
 
  
  const supabaseClient = supabase.createClient(

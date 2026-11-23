@@ -37,43 +37,60 @@ function formatAIResponse(text) {
         .replace(/\n/g, "<br>");
 }
 
+let chatHistory = [];
+
 async function getAIAnalysis(hours, distractions, mentalHealth, sleepQuality, sleepDeficiency) {
     const analysisDiv = document.getElementById("analysisDiv");
     analysisDiv.textContent = "Generating personalized AI sleep analysis...";
 
     const { data, error } = await supabaseClient.functions.invoke("sleep-advice", {
-        body: {
-            hours: hours,
-            distractions: distractions,
-            mentalHealth: mentalHealth,
-            sleepQuality: sleepQuality,
-            sleepDeficiency: sleepDeficiency
-        }
+        body: { hours, distractions, mentalHealth, sleepQuality, sleepDeficiency }
     });
 
     if (error || data?.error) {
-        console.error("AI error, using backup tips:", error || data.error);
-        try {
-            const response = await fetch("analysis.json");
-            const analysis = await response.json();
-            const pick = (item) => Array.isArray(item) ? item[0] : item;
-            const tips = [];
+        console.error("AI error:", error || data.error);
+        analysisDiv.textContent = "Could not load AI sleep analysis right now.";
+        return;
+    }
 
-            if (distractions < 0) tips.push(pick(analysis.lowDistraction));
-            if (mentalHealth < 0) tips.push(pick(analysis.lowMentalHealth));
-            if (sleepQuality < 0) tips.push(pick(analysis.lowSleepQuality));
-            if (sleepDeficiency < 0) tips.push(pick(analysis.lowSleepDeficiency));
+    // Save the starter conversation + AI's first reply
+    chatHistory = [...data.messages, { role: "assistant", content: data.reply }];
+    analysisDiv.innerHTML = formatAIResponse(data.reply);
+}
 
-            analysisDiv.textContent = tips.length > 0
-                ? tips.join("\n\n")
-                : "Your sleep habits look solid across all categories!";
-        } catch (fallbackErr) {
-            analysisDiv.textContent = "Could not load sleep analysis right now.";
-        }
+async function sendFollowUp() {
+    const input = document.getElementById("chatInput");
+    const btn = document.getElementById("sendChatBtn");
+    const analysisDiv = document.getElementById("analysisDiv");
+    const userText = input.value.trim();
+
+    if (!userText || chatHistory.length === 0) return;
+
+    // Show user's message immediately and lock the button while waiting
+    chatHistory.push({ role: "user", content: userText });
+    analysisDiv.innerHTML += `<hr style="border-color:#333; margin:16px 0;"><p><strong>You:</strong> ${userText}</p><p id="aiTyping"><em>Coach is thinking...</em></p>`;
+    input.value = "";
+    btn.disabled = true;
+
+    const { data, error } = await supabaseClient.functions.invoke("sleep-advice", {
+        body: { messages: chatHistory }
+    });
+
+    document.getElementById("aiTyping")?.remove();
+    btn.disabled = false;
+
+    if (error || data?.error) {
+        analysisDiv.innerHTML += `<p style="color:#ff8a80;">Could not get a reply right now. Try again in a few seconds.</p>`;
     } else {
-        analysisDiv.innerHTML = formatAIResponse(data.reply);
+        chatHistory.push({ role: "assistant", content: data.reply });
+        analysisDiv.innerHTML += `<div><strong>Coach:</strong><br>${formatAIResponse(data.reply)}</div>`;
     }
 }
+
+// Allow pressing Enter inside the input box to send
+document.getElementById("chatInput")?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendFollowUp();
+});
 
  
  const supabaseClient = supabase.createClient(

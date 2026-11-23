@@ -12,8 +12,11 @@
 </head>
 <body>
 
-<br>
-<br>
+      <div id="loader-wrapper">
+    <div class="spinner"></div>
+  </div>
+
+
     
 
 
@@ -23,8 +26,14 @@
 
     <a href="signup.html" class="headerbutton2">Sign Up</a>
 </div>
-<button id="logoutButton" onclick="handleLogout()" style="display: none;">Log Out</button>
 
+<button id="logoutButton" onclick="handleLogout()" style="display: none;" class="headerbutton1">Log Out</button>
+
+
+<h1>Results & Analysis</h1>
+
+
+<div class="containerMainL">
 
 <h2>Today's Results</h2>  
 <h4>Your Distraction Rating:</h4>
@@ -41,11 +50,9 @@
 
 <h4>Your Sleep Deficiency Rating:</h4>
 <div class="container" id="sleepDeficiencyDiv"></div>
-    
-    
-<br>
 
-<h2>Past Results</h2>
+
+    <h2>Past Results</h2>
 
 <table id="userResultsTable" style="display: none; margin-top: 20px;">
     <thead>
@@ -66,5 +73,14 @@
 <p>Awaitng graph for visuals.</p>
 
 <br>
+</div>
+
+<div class="containerMainR">
+    <h2>Analysis</h2>  
+</div>
+
+<br>
+
+
 </body>
 </html>

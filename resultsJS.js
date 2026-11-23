@@ -108,4 +108,10 @@ if (weights) {
     
 } 
 
+window.addEventListener("load", function () {
+      const loader = document.getElementById("loader-wrapper");
+      
+      loader.classList.add("hidden");
+    });
+
     

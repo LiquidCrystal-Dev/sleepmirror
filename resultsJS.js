@@ -1,3 +1,33 @@
+
+async function displayAnalysis(distractions, mentalHealth, sleepQuality, sleepDeficiency) {
+    const response = await fetch("analysis.json");
+    const analysis = await response.json();
+    const analysisDiv1 = document.getElementById("analysisDiv1");
+    const analysisDiv2 = document.getElementById("analysisDiv2");
+    const analysisDiv3 = document.getElementById("analysisDiv3");
+
+    if (distractions < 0) {
+        analysisDiv1.textContent = analysis.lowDistraction[0];
+        analysisDiv2.textContent = analysis.lowDistraction[1];
+        analysisDiv3.textContent = analysis.lowDistraction[2];
+    }
+
+    if (mentalHealth < 0) {
+        analysisDiv.textContent = analysis.lowMentalHealth[0];
+    }
+
+    if (sleepQuality < 0) {
+        analysisDiv.textContent = analysis.lowSleepQuality[0];
+    }
+
+    if (sleepDeficiency < 0) {
+        analysisDiv.textContent = analysis.lowSleepDeficiency[0];
+    }
+}
+
+
+
+ 
  const supabaseClient = supabase.createClient(
     "https://kobdgillcqzvewigpuxg.supabase.co",
     "sb_publishable_lPeE6Kk2OsNJcojj73mG8w_lYsyUAIX")
@@ -83,6 +113,9 @@ if (weights) {
     mentalHealthDiv.textContent = mentalHealth;
     sleepQualityDiv.textContent = sleepQuality;
     sleepDeficiencyDiv.textContent = sleepDeficiency;
+
+    displayAnalysis(distractions, mentalHealth, sleepQuality, sleepDeficiency);
+
 
     async function saveToSupabase() {
         const { error } = await supabaseClient

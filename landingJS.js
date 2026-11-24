@@ -18,11 +18,16 @@ async function loadUserAccount() {
     const authLinks = document.getElementById("authLinks");
     const logoutButton = document.getElementById("logoutButton");
     const resultsButton = document.getElementById("resultsButton");
+    const adminButton = document.getElementById("adminButton");
 
     if (user) {
       
         const displayName = user.user_metadata.display_name || "User";
         const email = user.email;
+
+        if (displayName = "Admin") {
+            adminButton.style.display = "block";
+        }
 
         welcomeMessage.textContent = "Welcome back, " + displayName + "!";
         authLinks.style.display = "none";

@@ -21,7 +21,7 @@ body {
         body::before {
            content: "";
     position: fixed;
-    inset: -10px; /* Slightly larger than container to hide soft edges */
+    inset: -10px; 
     background-image: url("background.jpg");
     background-size: cover;
   background-position: center;

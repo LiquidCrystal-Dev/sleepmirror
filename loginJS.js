@@ -6,14 +6,14 @@ const supabaseClient = supabase.createClient(
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", async function(event) {
-    // 1. Stop the browser from reloading the page
+ 
     event.preventDefault();
 
-    // 2. Grab the typed email and password
+  
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    // 3. Verify credentials with Supabase Auth
+
     const { data, error } = await supabaseClient.auth.signInWithPassword({
         email: email,
         password: password

@@ -25,7 +25,7 @@ async function loadUserAccount() {
         const displayName = user.user_metadata.display_name || "User";
         const email = user.email;
 
-        if (displayName = "Admin") {
+        if (displayName == "Admin") {
             adminButton.style.display = "block";
         }
 
